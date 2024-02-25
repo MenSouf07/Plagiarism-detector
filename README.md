@@ -6,6 +6,10 @@ This program is able to identify:
 * adding, modifying or deleting non-essential information.
 
 ## HOW THE PROGRAM WORKS
+<a id="explanation"></a>
+To explain the program, we will assume that we are just comparing 2 files named <i>file1.c</i> and <i>file2.c</i>.<br>
+If we compare more than 2 files we will anyway compare files 2 to 2.
+
 ### Pre-treatment
 The first step of the program is to transform each non-empty line of the files so that
 to eliminate information irrelevant to the analysis and keep only the “structure” of the
@@ -40,6 +44,32 @@ You can select whether you want to replace the keywords with 'w' or 'm' at the s
 
 ### Breaking into blocks/segments
 
+The second step consists of cutting each file into elementary blocks, called segments, which we will be able to compare with each other. For simplicity, each line will form a segment.
+For this we created the “Ligne” structure which is generally a linked list
+
+
+### Similarity between segments
+
+We seek to compare these segments two by two to detect similarities between the files.
+We now find ourselves with n segments in the first file and m in the second.
+<br>
+For each pair of segments ($S^1_i$, $S^2_j$), where the first segment is in the first file and the second segment in the second file, 
+we calculate the [Dice distance](https://en.wikipedia.org/wiki/Sørensen–Dice_coefficient) or the [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) (choice given to the user at the start of the program), between 0 (identical segments) and 1 (totally different segments).
+<br>
+We thus obtain a matrix D of size n×m with coefficients between 0 and 1 giving the similarity between two segments.
+<br>
+We will generate an image file <i>Similarite_file1_file2.pgm</i>, in gray level, representing
+the matrix D, the pixel being all the lighter the closer the segments are.
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -58,38 +88,6 @@ You can select whether you want to replace the keywords with 'w' or 'm' at the s
 
 
 
-
-The files supported by the program are limited to the following structure:
-* one instruction per line
-* each instruction is coded on five bytes
-* each line is composed of an optional label, 0, 1 or more spaces or a
-tabulation, of the operation code of the instruction (in lower case), followed, if there is data, by a space
-and the data, finally at the end of a potential comment starting with the character **;**
-* the value of a piece of data will be specified in decimal
-
-Here are the different supported instructions with their machine code given in parentheses:
-* (0) push x , (1) push# i , (2) ipush , (3) pop x , (4) ipop , (5) dup , (6) op i , (7) jmp adr , (8) jpz adr , (9) rnd x , (10) read x , (11) write x , (12) call adr , (13) ret , (14) halt.
-
-The “op” machine instruction allows you to perform an arithmetic or logical operation on the data.
-located at the top of the stack. Depending on the data, here are the possible operations :
-* 0: adds the two values at the top,
-1: subtraction,
-2: multiplication,
-3: integer division,
-4: modulo,
-5: reverses the value at the top of the stack,
-6: equality test,
-7: inequality test,
-8: test >,
-9: test ≥,
-10: test <,
-11: test ≤,
-12: and bit-by-bit logic,
-13: or bit-by-bit logic,
-14: bitwise logical exclusive or,
-15: bitwise non-logical
-
-If you wish, you have short programs written in assembly language to test the simulator in the [“Test files”](https://github.com/MenSouf07/Assembly-code-executor/tree/main/Test_files) folder (remember to look at the ["README_TestFiles.txt"](https://github.com/MenSouf07/Assembly-code-executor/blob/main/Test_files/README_TestFiles.txt) file to find out what each test program does).
 
 
 ### Details
@@ -112,27 +110,30 @@ to write a halt instruction, for example.
 * Have a C compiler.
 
 ### Installation & use
-To install Assembly-code-executor, follow these steps:
+To install Plagiarism-detector, follow these steps:
 
 #### 1. Clone the Repository
 Open the terminal:
 ```sh
-git clone https://github.com/MenSouf07/Assembly-code-executor.git 
-cd Assembly-code-executor
+git clone https://github.com/MenSouf07/Plagiarism-detector.git
+cd Plagiarism-detector
 ```
 #### 2. Compile the Program
 To compile the program, execute the following command in the terminal:
 ```sh
-gcc simulator.c -o simulator
+gcc plagiarism-detector.c -o plagiarism
 ```
-To run a <i>pgm.txt</i> source file, write to the terminal ():
+#### 3. Execution
+To compare n files between them (respectively called <i>file_1.c</i>, <i>file_2.c</i>, ..., <i>file_n.c</i>) write in the terminal :
 ```sh
-./simulator acces/path/pgm.txt        #Linux
-simulator.exe C:\acces\path\pgm.txt   #Windows
+./plagiarism acces/path/file_1.c acces/path/file_2.c ... acces/path/file_n.c                   #Linux
+plagiarism.exe C:\acces\path\file_1.c C:\acces\path\file_2.c ... C:\acces\path\file_n.c        #Windows
 ```
-Make sure to replace "access/path/pgm.txt" (respectively "C:\access\path\pgm.tx") with the actual path of your <i>pgm.txt</i> file.
+Make sure to replace "access/path/file_i.c" (respectively "C:\access\path\file_i.c") with the actual path of your <i>file_i.c</i> file.
 
-The <i>hexa.txt</i> file will contain the translation of the <i>pgm.txt</i> file into machine code. the execution when it will be done in the terminal
+
+see [the explanation of the program](#explanation)
+
 
 
 ## AUTHORS & CONTACTS
@@ -140,6 +141,6 @@ Don't hesitate to contact us for more information :
 * Mendel Souffir alias [@MenSouf07](https://github.com/MenSouf07)
   * mail : mendel.souffir@dauphine.eu / mendel.souffir07@gmail.com
   * [Linkedin](https://www.linkedin.com/in/mendel-souffir-1971252b0/)
-* Camille Jouanet alias [@kmillee](https://github.com/kmillee)
-  * mail : jouanet.camille@gmail.com / camille.jouanet@dauphine.eu
-  * [Linkedin](https://fr.linkedin.com/in/camillejouanet)
+* Anas Iboubkaren
+  * mail : Anas.Iboubkaren@dauphine.eu
+  * [Linkedin](https://www.linkedin.com/in/anas-iboubkaren-48b795218/)
