@@ -23,13 +23,13 @@ cd Plagiarism-detector
 #### 2. Compile the Program
 To compile the program, execute the following command in the terminal:
 ```sh
-gcc plagiarism-detector.c -o plagiarism
+gcc detector.c -o detector
 ```
 #### 3. Execution
-To compare n files between them (respectively called <i>file_1.c</i>, <i>file_2.c</i>, ..., <i>file_n.c</i>) write in the terminal :
+To compare $k$ files between them (respectively called <i>file_1.c</i>, <i>file_2.c</i>, ..., <i>file_k.c</i>) write in the terminal :
 ```sh
-./plagiarism acces/path/file_1.c acces/path/file_2.c ... acces/path/file_n.c                   #Linux
-plagiarism.exe C:\acces\path\file_1.c C:\acces\path\file_2.c ... C:\acces\path\file_n.c        #Windows
+./detector acces/path/file_1.c acces/path/file_2.c ... acces/path/file_n.c                   #Linux
+detector.exe C:\acces\path\file_1.c C:\acces\path\file_2.c ... C:\acces\path\file_n.c        #Windows
 ```
 Make sure to replace "access/path/file_i.c" (respectively "C:\access\path\file_i.c") with the actual path of your <i>file_i.c</i> file.
 <br>
@@ -49,7 +49,7 @@ If you compare more than two files, the display will be the same. There will onl
 ##### B. Matrix
 In addition to the distance, a matrix will also be displayed.
 <br>
-When comparing $k$ files having the following names file1.c,..., filek.c and using the following order when executing file1.c, file2.c,..., filek.c, consider that file1.c is associated with row 1 and column 1 of the matrix, file2.c is associated with row 2 and column 2 of the matrix, etc. Thus, the coefficient at row $i$ and column $j$ is associated with filei.c and filej.c. This means that the coefficient at line $i$ and column $j$ corresponds to the distance between the $i$-th file placed on the command line and the $j$-th file placed on the command line (not counting the a.out file).
+When comparing $k$ files having the following names <i>file_1.c</i>,..., <i>file_k.c</i> and using the following order when executing <i>file_1.c</i>, <i>file_2.c</i>,..., <i>file_k.c</i>, consider that <i>file_1.c</i> is associated with row 1 and column 1 of the matrix, <i>file_2.c</i> is associated with row 2 and column 2 of the matrix, etc. Thus, the coefficient at row $i$ and column $j$ is associated with <i>file_i.c</i> and <i>file_j.c</i>. This means that the coefficient at line $i$ and column $j$ corresponds to the distance between the $i$-th file placed on the command line and the $j$-th file placed on the command line (not counting the a.out file).
 
 ##### C. PGM files
 In addition to display, if you compare files with the name file1.c and file2.c, three PGM files will be created:
