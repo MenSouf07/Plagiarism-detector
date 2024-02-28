@@ -210,7 +210,7 @@ after the comma.
 Don't hesitate to contact us for more information :
 * Mendel Souffir alias [@MenSouf07](https://github.com/MenSouf07)
   * mail : mendel.souffir@dauphine.eu / mendel.souffir07@gmail.com
-  * [Linkedin](https://www.linkedin.com/in/mendel-souffir-1971252b0/)
+  * [Linkedin](https://www.linkedin.com/in/mendel-souffir/)
 * Anas Iboubkaren
   * mail : Anas.Iboubkaren@dauphine.eu
   * [Linkedin](https://www.linkedin.com/in/anas-iboubkaren-48b795218/)
